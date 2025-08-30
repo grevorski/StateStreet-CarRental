@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface CarStorage {
     List<Car> findAvailableCarsByType(CarType carType);
+
     List<Car> findAllCars();
 }

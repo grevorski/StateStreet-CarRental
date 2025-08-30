@@ -3,12 +3,11 @@ package statestreet.carrental.storage;
 import statestreet.carrental.model.Car;
 import statestreet.carrental.model.CarType;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class InMemoryCarStorage implements CarStorage {
-    private final Map<String, Car> cars = new HashMap<>();
+    private final List<Car> cars = new ArrayList<>();
 
     public InMemoryCarStorage() {
         initializeCars();
@@ -28,18 +27,18 @@ public class InMemoryCarStorage implements CarStorage {
                 .type(carType)
                 .model(model)
                 .build();
-        cars.put(id, car);
+        cars.add(car);
     }
 
     @Override
     public List<Car> findAvailableCarsByType(CarType carType) {
-        return cars.values().stream()
+        return cars.stream()
                 .filter(car -> car.getType().equals(carType) && car.isAvailable())
                 .toList();
     }
 
     @Override
     public List<Car> findAllCars() {
-        return cars.values().stream().toList();
+        return cars;
     }
 }
