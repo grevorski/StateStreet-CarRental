@@ -44,6 +44,7 @@ public class CarRentalApplication {
             LocalDateTime startOfReservation = LocalDateTime.of(year, month, day, hour, minute);
             System.out.println("Provide duration");
             int duration = inputScanner.nextInt();
+            inputScanner.close();
 
             Reservation reservation = service.reserveCar(CarType.valueOf(carType), "CUSTOMER1", startOfReservation, duration);
 

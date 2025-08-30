@@ -24,6 +24,6 @@ public class InMemoryReservationStorage implements ReservationStorage {
         return reservationList.stream()
                 .filter(reservation -> reservation.getCar().getId().equals(carId))
                 .anyMatch(reservation -> reservation.getStartDateTime().isBefore(endDateTime) &&
-                        reservation.getEndDateTime().isBefore(startDateTime));
+                        startDateTime.isBefore(reservation.getEndDateTime()));
     }
 }
