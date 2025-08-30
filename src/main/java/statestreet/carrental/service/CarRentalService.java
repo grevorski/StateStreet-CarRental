@@ -50,7 +50,7 @@ public class CarRentalService {
         return availableCarsByType.stream()
                 .filter(car -> !reservationStorage.hasConflictReservation(car.getId(), startDateTime, endDateTime))
                 .findFirst()//TODO: dodac zeby zwracało liste?
-                .orElseThrow(() -> new RuntimeException(
+                .orElseThrow(() -> new CarNotAvailableException(
                         "There are no cars of type %s available for provided time period"
                                 .formatted(carType.getDisplayName())));
     }
